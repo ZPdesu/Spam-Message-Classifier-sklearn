@@ -8,7 +8,7 @@ def load_message():
     content = []
     label = []
 
-    with open('label_message.txt') as fr:
+    with open('RawData/junk_message.txt') as fr:
         lines = fr.readlines()
         num = len(lines)
         for i in range(num):

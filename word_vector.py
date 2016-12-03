@@ -6,6 +6,7 @@ import sklearn.feature_extraction.text
 import json
 import re
 from scipy import sparse, io
+import load_data
 
 
 # 将连续的数字转变为长度的维度
@@ -54,7 +55,7 @@ def vector_word():
         vec_count = MessageCountVectorizer(min_df=2, max_df=0.8)
         data_count = vec_count.fit_transform(content)
         name_count_feature = vec_count.get_feature_names()
-        '''
+    '''
 
     vec_tfidf = TfidfVectorizer(min_df=2, max_df=0.8)
     data_tfidf = vec_tfidf.fit_transform(content)
@@ -69,4 +70,4 @@ def vector_word():
 
 if '__main__' == __name__:
     vector_word()
-    print 'ok'
+    print ' OK '

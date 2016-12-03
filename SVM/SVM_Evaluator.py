@@ -1,29 +1,10 @@
 # -*- coding: utf-8 -*-
-import numpy as np
-import sklearn
-import jieba
-import jieba.posseg as pseg
-import sklearn.feature_extraction.text
-from sklearn import svm
-from sklearn import metrics
+
 import json
 from scipy import sparse, io
-from sklearn.feature_selection import VarianceThreshold
-from sklearn.feature_selection import SelectFromModel
-import re
-import load_data
-from word_vector import TfidfVectorizer
-from sklearn.model_selection import cross_val_score
-import pickle
 from sklearn.externals import joblib
-from sklearn.svm import SVC
-from sklearn.preprocessing import StandardScaler
-from sklearn.datasets import load_iris
-from sklearn.model_selection import StratifiedShuffleSplit
-from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 from SVM_Trainer import TrainerLinear
-from SVM_Trainer import TrainerRbf
 from SVM_Predictor import Predictor
 from sklearn import preprocessing
 

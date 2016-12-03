@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-import sklearn
 import jieba
 import jieba.posseg as pseg
 import sklearn.feature_extraction.text
 from sklearn import svm
 from sklearn import metrics
+import word_vector
 
 import json
 import re
