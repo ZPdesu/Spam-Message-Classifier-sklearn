@@ -54,4 +54,4 @@ if '__main__' == __name__:
     evaluator = Evaluator(training_data, training_target, test_data, test_target)
     evaluator.train()
     #evaluator.cross_validation()
-    #evaluator.predict(type='sample_data')
+    evaluator.predict(type='sample_data')

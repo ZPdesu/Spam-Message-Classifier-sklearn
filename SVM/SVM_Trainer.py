@@ -78,7 +78,7 @@ class TrainerRbf:
         self.clf.set_params(C=grid.best_params_['C'], gamma=grid.best_params_['gamma'])
         print("The best parameters are %s with a score of %0.2f"
               % (grid.best_params_, grid.best_score_))
-        #self.draw_visualization_param_effect(grid, C_range, gamma_range)
+        self.draw_visualization_param_effect(grid, C_range, gamma_range)
 
     def draw_visualization_param_effect(self, grid, C_range, gamma_range):
         scores = grid.cv_results_['mean_test_score'].reshape(len(C_range),
@@ -93,8 +93,8 @@ class TrainerRbf:
         plt.xticks(np.arange(len(gamma_range)), gamma_range, rotation=45)
         plt.yticks(np.arange(len(C_range)), C_range)
         plt.title('Validation accuracy')
-        plt.show()
         plt.savefig('fig/param_effect.png')
+        plt.show()
 
     def train_classifier(self):
         self.clf.fit(self.training_data, self.training_target)
@@ -136,16 +136,14 @@ if '__main__' == __name__:
     with open('../Data/train_label.json', 'r') as f:
         label = json.load(f)
 
-    #learn_best_param(content, label)
-    #SVM_train(content, label)
-    Trainer = TrainerLinear(content, label)
-    Trainer.learn_best_param()
-    Trainer.train_classifier()
+    #Trainer = TrainerLinear(content, label)
+    #Trainer.learn_best_param()
+    #Trainer.train_classifier()
     #Trainer.cross_validation()
 
-    #Trainer2 = TrainerRbf(content, label)
+    Trainer2 = TrainerRbf(content, label)
     #Trainer2.learn_best_param()
-    #Trainer2.train_classifier()
+    Trainer2.train_classifier()
     #Trainer2.cross_validation()
 
 

@@ -10,8 +10,8 @@ class Predictor:
     def sample_predict(self, clf):
         test_result = clf.predict(self.test_data)
         print 'ZhuPei is very very cool'
-        print metrics.classification_report(self.test_data, test_result)
-        print metrics.confusion_matrix(self.test_data, test_result)
+        print metrics.classification_report(self.test_target, test_result)
+        print metrics.confusion_matrix(self.test_target, test_result)
 
     def new_predict(self, clf):
         test_result = clf.predict(self.test_data)
