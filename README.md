@@ -150,6 +150,7 @@ avg / total       0.97      0.97      0.97       110
 ├── word_vector.py
 ├── word_vector.pyc
 ├── message_classifier.py
+├── test.py
 ├── RawData
 │   ├── junk_message.txt
 │   ├── train_label.json
