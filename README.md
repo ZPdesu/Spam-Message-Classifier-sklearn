@@ -90,7 +90,10 @@ avg / total       1.00      1.00      1.00      1097
 
 [ 0.95343915  0.93275873  0.95779781  0.95487179  0.96133794]
 Accuracy: 0.95 (+/- 0.02)
+
 ```
+
+![image](github.com/ZPdesu/Spam-Message-Classifier-sklearn/blob/master/SVM/fig/param_effect.png)
 
 **In**
 
