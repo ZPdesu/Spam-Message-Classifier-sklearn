@@ -49,7 +49,7 @@ $ python Mongo_Configure.py
 ```
 
 `SVM`目录下包含了封装了模型训练方法的类SVM_Trainer，预测和检验输出方法的类SVM_Predictor，和最终运行和评价模型的类SVM_Evaluator。
-持久化后的训练模型存储在`model`目录下对应的pkl文件中，`fig`目录中存储着寻找最优参数时的图像，预测的分类结果存储在`result`目录下。
+持久化后的训练模型存储在`model`目录下对应的pkl文件中，`fig`目录中存储着寻找最优参数时的图像，预测的分类结果存储在`result`目录下,运行SVM_Trainer.py或者SVM_Evaluator.py将进行数据集分割，数据降维（PCA or Random projections），训练，交差验证验证及预测等功能。
 
 ### SVM
 ```
@@ -83,13 +83,13 @@ best parameters, classification report, N-fold cross validation accuracy
 The best parameters are {'C': 10000.0} with a score of 0.97
              precision    recall  f1-score   support
 
-          0       1.00      1.00      1.00       983
-          1       1.00      0.99      1.00       114
+          0       1.00      1.00      1.00      8128
+          1       1.00      1.00      1.00       872
 
-avg / total       1.00      1.00      1.00      1097
+avg / total       1.00      1.00      1.00      9000
 
-[ 0.95343915  0.93275873  0.95779781  0.95487179  0.96133794]
-Accuracy: 0.95 (+/- 0.02)
+[ 0.89272305  0.88408158  0.90056112  0.89901823  0.89448291]
+Accuracy: 0.89 (+/- 0.01)
 
 ```
 ![Image](https://github.com/ZPdesu/Spam-Message-Classifier-sklearn/blob/master/SVM/fig/param_effect.png)
@@ -107,13 +107,13 @@ classification report, confusion matrix
 ```
              precision    recall  f1-score   support
 
-          0       0.98      0.99      0.99       100
-          1       0.89      0.80      0.84        10
+          0       0.98      0.98      0.98       906
+          1       0.80      0.82      0.81        94
 
-avg / total       0.97      0.97      0.97       110
+avg / total       0.96      0.96      0.96      1000
 
-[[99  1]
- [ 2  8]]
+[[887  19]
+ [ 17  77]]
 
 ```
 ## Structure
@@ -151,10 +151,12 @@ avg / total       0.97      0.97      0.97       110
 ├── load_tata.pyc
 ├── word_vector.py
 ├── word_vector.pyc
-├── message_classifier.py
+├── preprocessing.py
+├── preprocessing.pyc
 ├── test.py
 ├── RawData
 │   ├── junk_message.txt
+│   ├── message.txt
 │   ├── train_label.json
 │   └── train_content.json
 └── Data
