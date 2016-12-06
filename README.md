@@ -24,19 +24,20 @@ Snapshoot of training data : `RawData/junk_message.txt`
 
 
 Fork the repository, then clone or download
+
 ```
 $ git clone https://github.com/ZPdesu/Spam-Message-Classifier-sklearn
 ```
 
-进入项目文件夹下，从`RawData/junk_message.txt`中加载原始数据，进行文本域和标签域分割，转存到对应json文件中
+进入项目文件夹下，从RawData/junk_message.txt中加载原始数据，进行文本域和标签域分割，转存到对应json文件中
 
 ```
 $ cd Spam-Message-Classifier-sklearn
 $ python load_data.py
 ```
 
-对短信文本进行筛选和处理转换后进行分词，将生成的词向量稀疏矩阵存入`Data/word_vector.mtx`，词向量对应的词表存入`Data/vector_type.json`，
-标签信息存入`Data/train_label.json`
+对短信文本进行筛选和处理转换后进行分词，将生成的词向量稀疏矩阵存入Data/word_vector.mtx，词向量对应的词表存入Data/vector_type.json，
+标签信息存入`Data/train_label.json
 
 ```
 $ python word_vector.py
@@ -48,8 +49,8 @@ $ python word_vector.py
 $ python Mongo_Configure.py
 ```
 
-`SVM`目录下包含了封装了模型训练方法的类SVM_Trainer，预测和检验输出方法的类SVM_Predictor，和最终运行和评价模型的类SVM_Evaluator。
-持久化后的训练模型存储在`model`目录下对应的pkl文件中，`fig`目录中存储着寻找最优参数时的图像，预测的分类结果存储在`result`目录下,运行SVM_Trainer.py或者SVM_Evaluator.py将进行数据集分割，数据降维（PCA or Random projections），训练，交差验证验证及预测等功能。
+SVM目录下包含了封装了模型训练方法的类SVM_Trainer，预测和检验输出方法的类SVM_Predictor，和最终运行和评价模型的类SVM_Evaluator。
+持久化后的训练模型存储在model目录下对应的pkl文件中，fig目录中存储着寻找最优参数时的图像，预测的分类结果存储在result目录下,运行SVM_Trainer.py或者SVM_Evaluator.py将进行数据集分割，数据降维（PCA or Random projections），训练，交差验证验证及预测等功能。
 
 ### SVM
 ```
@@ -79,6 +80,7 @@ $ python SVM_Trainer.py
 **Out**
 
 best parameters, classification report, N-fold cross validation accuracy
+
 ```
 The best parameters are {'C': 10000.0} with a score of 0.97
              precision    recall  f1-score   support
@@ -116,6 +118,7 @@ avg / total       0.96      0.96      0.96      1000
  [ 17  77]]
 
 ```
+
 ## Structure
 
 ```
