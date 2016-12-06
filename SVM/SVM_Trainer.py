@@ -14,6 +14,11 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import ShuffleSplit
+from sklearn.model_selection import train_test_split
+from scipy import sparse, io
+from sklearn.decomposition import PCA
+from preprocessing_data import split_data
+from preprocessing_data import dimensionality_reduction
 
 # Utility function to move the midpoint of a colormap to be around the values of interest.
 class MidpointNormalize(Normalize):
@@ -135,15 +140,18 @@ if '__main__' == __name__:
     content = io.mmread('../Data/word_vector.mtx')
     with open('../Data/train_label.json', 'r') as f:
         label = json.load(f)
+    training_data, test_data, training_target, test_target = split_data(content, label)
+    training_data, test_data = dimensionality_reduction(training_data.todense(), test_data.todense(), type='pca')
 
-    #Trainer = TrainerLinear(content, label)
+    Trainer = TrainerLinear(training_data, training_target)
     #Trainer.learn_best_param()
     #Trainer.train_classifier()
-    #Trainer.cross_validation()
+    print 'ok'
+    Trainer.cross_validation()
 
-    Trainer2 = TrainerRbf(content, label)
+    #Trainer2 = TrainerRbf(training_data, training_target)
     #Trainer2.learn_best_param()
-    Trainer2.train_classifier()
+    #Trainer2.train_classifier()
     #Trainer2.cross_validation()
 
 

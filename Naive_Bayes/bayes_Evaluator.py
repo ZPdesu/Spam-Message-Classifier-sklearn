@@ -3,16 +3,11 @@
 import json
 from scipy import sparse, io
 from sklearn.externals import joblib
-from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 from bayes_Trainer import Trainer_bayes
 from bayes_Predictor import Predictor
-
-
-def split_data(content, label):
-    training_data, test_data, training_target, test_target = train_test_split(
-        content, label, test_size=0.1, random_state=0)
-    return training_data, test_data, training_target, test_target
+from preprocessing_data import split_data
+from preprocessing_data import dimensionality_reduction
 
 
 class Evaluator:
@@ -43,6 +38,7 @@ if '__main__' == __name__:
     with open('../Data/train_label.json', 'r') as f:
         label = json.load(f)
     training_data, test_data, training_target, test_target = split_data(content, label)
+    training_data, test_data = dimensionality_reduction(training_data.todense(), test_data.todense(), type='pca')
     evaluator = Evaluator(training_data.todense(), training_target, test_data.todense(), test_target)
     evaluator.train()
     #evaluator.cross_validation()

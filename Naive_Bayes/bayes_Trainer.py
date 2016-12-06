@@ -5,6 +5,9 @@ from scipy import sparse, io
 from sklearn.externals import joblib
 from sklearn.model_selection import ShuffleSplit
 from sklearn.model_selection import cross_val_score
+import numpy as np
+from preprocessing_data import split_data
+from preprocessing_data import dimensionality_reduction
 
 
 class Trainer_bayes:
@@ -44,9 +47,13 @@ if '__main__' == __name__:
     content = io.mmread('../Data/word_vector.mtx')
     with open('../Data/train_label.json', 'r') as f:
         label = json.load(f)
-    content = content.todense()
+    content = content
+    training_data, test_data, training_target, test_target = split_data(content, label)
+    print np.shape(training_data)
+    training_data, test_data = dimensionality_reduction(training_data.todense(), test_data.todense(), type='pca')
+    print np.shape(training_data)
 
-    Trainer = Trainer_bayes(content, label)
+    Trainer = Trainer_bayes(training_data.todense(), training_target)
     Trainer.train_classifier()
-    Trainer.cross_validation()
+    #Trainer.cross_validation()
 

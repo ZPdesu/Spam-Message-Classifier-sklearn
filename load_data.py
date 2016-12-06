@@ -7,9 +7,12 @@ import json
 def load_message():
     content = []
     label = []
+    lines =[]
 
-    with open('RawData/junk_message.txt') as fr:
-        lines = fr.readlines()
+    with open('RawData/message.txt') as fr:
+        for i in range(10000):
+            line = fr.readline()
+            lines.append(line)
         num = len(lines)
         for i in range(num):
             message = lines[i].split('\t')

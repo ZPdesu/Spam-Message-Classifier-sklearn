@@ -3,24 +3,12 @@
 import json
 from scipy import sparse, io
 from sklearn.externals import joblib
-from sklearn.model_selection import train_test_split
 from SVM_Trainer import TrainerLinear
 from SVM_Predictor import Predictor
-from sklearn import preprocessing
+from preprocessing_data import split_data
+from preprocessing_data import dimensionality_reduction
 
 
-def split_data(content, label):
-    training_data, test_data, training_target, test_target = train_test_split(
-        content, label, test_size=0.1, random_state=0)
-    return training_data, test_data, training_target, test_target
-
-
-def standardized_data(content, label):
-    training_data, test_data, training_target, test_target = split_data(content, label)
-    scalar = preprocessing.StandardScaler().fit(training_data)
-    training_data_transformed = scalar.transform(training_data)
-    test_data_transformed = scalar.transform(test_data)
-    return training_data_transformed, test_data_transformed, training_target, test_target
 
 
 class Evaluator:
@@ -51,6 +39,7 @@ if '__main__' == __name__:
     with open('../Data/train_label.json', 'r') as f:
         label = json.load(f)
     training_data, test_data, training_target, test_target = split_data(content, label)
+    training_data, test_data = dimensionality_reduction(training_data.todense(), test_data.todense(), type='pca')
     evaluator = Evaluator(training_data, training_target, test_data, test_target)
     evaluator.train()
     #evaluator.cross_validation()
